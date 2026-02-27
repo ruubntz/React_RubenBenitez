@@ -1,16 +1,36 @@
-function Operators({ activeOperator, onSelect }) {
+function Operators({ activeOperator, onSelect, theme }) {
   const operators = ["+", "-", "×", "÷"];
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "1rem",
+    gap: "0.5rem",
+  };
+
+  const buttonBaseStyle = {
+    flex: 1,
+    padding: "0.6rem 0",
+    fontSize: "1.1rem",
+    borderRadius: "10px",
+    border: "none",
+    color: "#ffffff",
+    cursor: "pointer",
+    transition: "background 0.2s ease",
+  };
+
   return (
-    <div>
+    <div style={containerStyle}>
       {operators.map((op) => (
         <button
           key={op}
           onClick={() => onSelect(op)}
           style={{
-            backgroundColor: activeOperator === op ? "#4caf50" : "#ddd",
-            fontWeight: activeOperator === op ? "bold" : "normal",
-            margin: "0 5px"
+            ...buttonBaseStyle,
+            background:
+              activeOperator === op
+                ? theme.primaryHover
+                : theme.primary,
           }}
         >
           {op}
